@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Page</title>
+
+<style type="text/css">
+h2, .reg{
+	text-align: center;
+}
+form{
+	margin:10px;
+}
+.m{
+	margin: 10px;
+}
+</style>
+
+</head>
+<body>
+
+<h2>Register New Person</h2>
+
+<form class = "reg" action="#" th:action="@{/registration-complete}" method="post" th:object="${people}">
+
+	<label>Enter ID: </label>
+	<input class="m" type="number" th:field="*{id}" required><br>
+	
+	<label>Enter Name: </label>
+	<input class="m" type="text" th:field="*{name}" required><br>
+	
+	<label>Enter Age: </label>
+	<input class="m" type="number" th:field="*{age}" required><br>
+	
+	<label>Choose Gender: </label>
+	<select class="m" th:field="*{gender}" required>
+		<option th:value="Male">Male</option>
+		<option th:value="Female" >Female</option>
+	</select><br>
+	
+	<label>Enter Occupation: </label>
+	<input class="m" type="text" th:field="*{occupation}" required><br>
+	
+	<input class="m" type="submit" value="Register"><br>
+
+</form>
+
+<form th:action="@{/people-table}">
+	<input type="submit" value="Go Back to Table">
+</form>
+
+<form th:action="@{/}">
+	<input type="submit" value="Go Home">
+</form>
+
+</body>
+</html>

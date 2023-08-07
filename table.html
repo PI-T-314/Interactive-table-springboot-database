@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registered People</title>
+
+<style type="text/css">
+h2 {
+	text-align: center;
+}
+
+table {
+	width: 100%;
+	border-bottom: 2px solid black;
+}
+
+th {
+	background-color: black;
+	color: white;
+}
+
+tr:nth-child(even) {
+	background-color: rgb(238, 238, 238);
+}
+
+table, td, th {
+	border-right: 2px solid black;
+	border-left: 2px solid black;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+.info {
+	text-align: center;
+}
+
+.delete-button {
+	background-color: rgb(255, 34, 58);
+	border: none;
+	color: white;
+	padding: 8px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.delete-button:hover {
+	background-color: tomato;
+}
+
+.update-button {
+	background-color: rgb(0, 140, 255);
+	border: none;
+	color: white;
+	padding: 8px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.update-button:hover {
+	background-color: darkcyan;
+}
+</style>
+
+</head>
+<body>
+
+<h2>Registered People's Table</h2>
+
+<section>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Gender</th>
+				<th>Occupation</th>
+				<th>Delete / Update</th>
+			</tr>
+		</thead>
+		<tbody class="info">
+			<tr th:each="p : ${people}">
+				<td th:text="${p.id}"></td>
+				<td th:text="${p.name}"></td>
+				<td th:text="${p.age}"></td>
+				<td th:text="${p.gender}"></td>
+				<td th:text="${p.occupation}"></td>
+				<td>
+					<a class="delete-button" th:href="@{/delete(peopleid=${p.id})}">Delete</a>
+					<a class="update-button" th:href="@{/update(peopleid=${p.id})}">Update</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+<br><br><br>
+<form th:action="@{/}">
+	<input type="submit" value="Go back">
+</form>
+<br>
+
+	<form th:action="@{/register-page}">
+		<input type="submit" value="Register new Person">
+	</form>
+
+</body>
+</html>
